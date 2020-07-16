@@ -11,7 +11,7 @@ server.use(express.json())
 server.use("/hobbits", hobbitsRouter)
 server.get("/", (req, res) => {
 	res.json({
-		message: "Welcome to our API",
+		message: "Welcome",
 	})
 })
 
@@ -22,6 +22,11 @@ server.use((err, req, res, next) => {
 	})
 })
 
-server.listen(port, () => {
-	console.log(`Running at http://localhost:${port}`)
-})
+if(!module.parent){
+	server.listen(port, () => {
+		console.log(`Running at http://localhost:${port}`)
+	})
+}
+
+
+module.exports = server 
